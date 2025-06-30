@@ -1,0 +1,92 @@
+/* Container für alle Karten */
+
+#content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f4f4f4;
+  font-family: sans-serif;
+}
+
+/* Einzelne Pokémon-Karte */
+.pokemon-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 180px;
+  padding: 16px;
+  text-align: center;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.pokemon-card:hover {
+  transform: scale(1.05);
+}
+
+/* Pokémon-Bild */
+.pokemon-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* Pokémon-Name */
+.pokemon-card h3 {
+  margin: 12px 0 4px;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+/* Pokémon-ID */
+.pokemon-card p {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+}
+.tab-nav {
+    list-style: none;
+    display: flex;
+    gap: 12px;
+    padding: 0;
+    margin-bottom: 16px;
+}
+
+.tab-nav li a {
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #eee;
+    border-radius: 8px;
+    color: black;
+}
+
+.tab-nav li a:hover {
+    background-color: #ccc;
+}
+.tab-nav {
+    list-style: none;
+    display: flex;
+    gap: 12px;
+    padding: 0;
+    margin: 16px 0;
+    justify-content: center;
+}
+
+.tab-nav li a {
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #eee;
+    border-radius: 8px;
+    color: #333;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.tab-nav li a:hover {
+    background-color: #ccc;
+}
+
+.tab-content {
+    margin-top: 12px;
+}

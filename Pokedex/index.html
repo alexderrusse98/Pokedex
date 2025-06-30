@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pokédex</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./styles/modal.css" />
+  <link rel="stylesheet" href="./styles/loading.css" />
+</head>
+<body onload="init()">
+
+  <!-- 🧭 Header mit Suchfeld -->
+  <header>
+    <input type="text" id="searchInput" placeholder="Search Pokémon..." />
+  </header>
+
+  <!-- 🌀 Spinner (verdeckt die Seite beim Laden) -->
+  <div id="spinner" class="hidden">Loading...</div>
+
+  <!-- 📦 Pokémon-Container -->
+  <main>
+    <div class="pokemon" id="content"></div>
+    <button onclick="loadMore()" id="loadMoreBtn">Weitere anzeigen</button>
+  </main>
+
+  <!-- 🔍 Modal -->
+  <div class="modal-overlay" id="modal" style="display: none;">
+    <div class="modal-box">
+      
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- 📜 Scripts -->
+  <script src="./scripte.js"></script>
+  <script src="./scripts/template.js"></script>
+</body>
+</html>
