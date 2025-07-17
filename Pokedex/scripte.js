@@ -31,33 +31,50 @@ let pokemonEvoImg = [];
 
 async function init() {
     setupLiveSearch();
-    await loadMorePokemon(); // Initiale 10 laden
+    await loadMorePokemon(); 
 }
-// ⬇ Pokémon laden
+
 async function loadMorePokemon() {
     showSpinner();
-    const response = await fetch(`${BASE_URL}10&offset=${currentOffset}`); // anfrage an die API    
-    const data = await response.json(); // json Object erhalten
-    const results = data.results; // das ist ein array im json
+    const response = await fetch(`${BASE_URL}20&offset=${currentOffset}`);
+    const data = await response.json();
+    const results = data.results;
 
     for (let result of results) {
         const detailsRes = await fetch(result.url);
         const pokemonDetails = await detailsRes.json();
         pokemonArray.push(pokemonDetails);
 
-        const resultDetailsEvo = await fetch(pokemonDetails.species.url)
-        const resultEvo = await resultDetailsEvo.json();
-        pokemonEvoImg.push(resultEvo);
-        console.log(resultEvo); // jetzt muss ich das noch das Template übergeben
+        const speciesRes = await fetch(pokemonDetails.species.url);
+        const speciesData = await speciesRes.json();
+
+        const evoChainRes = await fetch(speciesData.evolution_chain.url);
+        const evoChainData = await evoChainRes.json();
+
+        const evoImages = [];
+
+    
+        let current = evoChainData.chain;
+
+        for (let i = 0; i < 3 && current; i++) {
+            const name = current.species.name;
+            const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+            const data = await res.json();
+            evoImages.push(data.sprites.front_default);
+
+            current = current.evolves_to[0]; 
+        }
+
+        pokemonEvoImg.push(evoImages);
     }
 
-    currentOffset += 10; 
+    currentOffset += 20;
     hideSpinner();
     displayPokemon();
 }
 
 
-//  Anzeige
+
 function displayPokemon() {
     const container = document.getElementById('content');
     container.innerHTML = '';
@@ -70,18 +87,21 @@ function displayPokemon() {
     }
 }
 
-//  Einzelnes Modal öffnen
+
 function openPokemonModal(index) {
     slideIndex = index;
-    const evo = pokemonEvoImg[index]
     const p = pokemonArray[index];
     const modal = document.getElementById('modal');
     const content = document.getElementById('modal-content');
     changeColor(content, p);
-    console.log(evo);
-    
-    content.innerHTML = templatePokemonModal(p, evo);
-    
+
+    const evolutionImages = pokemonEvoImg[index];
+    let evoHtml = '';
+    for (let i = 0; i < evolutionImages.length; i++) {
+        evoHtml += `<img src="${evolutionImages[i]}" alt="evolution" style="width: 100px; margin-right: 10px;">`;
+    }
+    content.innerHTML = templatePokemonModal(p, evoHtml);
+
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 
@@ -92,10 +112,10 @@ function openPokemonModal(index) {
 
 function showTab(tabId) {
     const tabs = document.querySelectorAll('.tab-content');
-    tabs.forEach(tab => tab.style.display = 'none'); // alle verstecken
+    tabs.forEach(tab => tab.style.display = 'none'); 
 
     const activeTab = document.getElementById(tabId);
-    if (activeTab) activeTab.style.display = 'block'; // gewünschten zeigen
+    if (activeTab) activeTab.style.display = 'block'; 
 }
 
 
@@ -119,7 +139,6 @@ function changeColor(content, pokemon) {
     content.style.backgroundColor = bgColor;
 }
 
-//  Live-Suche
 function setupLiveSearch() {
     const input = document.getElementById('searchInput');
 
@@ -158,7 +177,7 @@ function renderFilteredPokemon(filtered) {
     }
 }
 
-//  Spinner
+
 function showSpinner() {
     document.getElementById('spinner').classList.remove('hidden');
 }
@@ -166,7 +185,7 @@ function hideSpinner() {
     document.getElementById('spinner').classList.add('hidden');
 }
 
-//  Weitere laden
+
 function loadMore() {
     loadMorePokemon();
 }

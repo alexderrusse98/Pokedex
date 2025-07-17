@@ -8,7 +8,7 @@
             </div>
         `;
 }
-function templatePokemonModal(pokemon) {
+function templatePokemonModal(pokemon, evoHtml) {
     return `
         <h2>${pokemon.name}</h2>
         <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
@@ -22,22 +22,23 @@ function templatePokemonModal(pokemon) {
 
         <!--  Inhalt pro Tab -->
         <div id="basics" class="tab-content">
-            <p><strong>Typ:</strong> ${pokemon.types.map(t => t.type.name).join(', ')}</p>
+            <p><strong>Typ:</strong> ${pokemon.types[0].type.name}</p>
             <p><strong>Größe:</strong> ${pokemon.height / 10} m</p>
             <p><strong>Gewicht:</strong> ${pokemon.weight / 10} kg</p>
             <p><strong>ID:</strong> ${pokemon.id}</p>
         </div>
 
         <div id="stats" class="tab-content" style="display:none;">
-            ${pokemon.stats.map(s => `
-                <p><strong>${s.stat.name}:</strong> ${s.base_stat}</p>
-            `).join('')}
+            <p><strong>HP:</strong> ${pokemon.stats[0].base_stat}</p>
+            <p><strong>Attack:</strong> ${pokemon.stats[1].base_stat}</p>
+            <p><strong>Defense:</strong> ${pokemon.stats[2].base_stat}</p>
+            <p><strong>Sp. Atk:</strong> ${pokemon.stats[3].base_stat}</p>
+            <p><strong>Sp. Def:</strong> ${pokemon.stats[4].base_stat}</p>
+            <p><strong>Speed:</strong> ${pokemon.stats[5].base_stat}</p>
         </div>
 
         <div id="evo" class="tab-content" style="display:none;">
-            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+            ${evoHtml}
         </div>
 
         <button class="prev" onclick="changeSlide(-1)">&#10094;</button>

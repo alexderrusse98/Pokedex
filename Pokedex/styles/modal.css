@@ -1,21 +1,21 @@
 .display_none {
   display: none;
 }
-/* Das Overlay: verdunkelt den Hintergrund */
+
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6); /* halbtransparent */
+  background-color: rgba(0, 0, 0, 0.6); 
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
-/* Das Modal-Fenster */
+
 .modal-box {
   background-color: white;
   padding: 20px 25px;
@@ -27,7 +27,6 @@
   position: relative;
 }
 
-/* Optional: Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -39,7 +38,7 @@
   }
 }
 
-/* Schließen-Button oben rechts */
+
 .modal-close {
   position: absolute;
   top: 10px;
@@ -54,4 +53,4 @@
   color: #000;
 }
 
-/* slideShow*/
+
