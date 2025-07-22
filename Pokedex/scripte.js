@@ -30,30 +30,29 @@ let slideIndex = 0;
 let pokemonEvoImg = [];
 
 async function init() {
-    setupLiveSearch();
-    await loadMorePokemon(); 
+    setupLiveSearch(); // was macht diese function genau? aktiviert das input Feld
+    await loadMorePokemon(); // warum await? es holt schon mal die Pokemon
 }
 
 async function loadMorePokemon() {
     showSpinner();
-    const response = await fetch(`${BASE_URL}20&offset=${currentOffset}`);
-    const data = await response.json();
-    const results = data.results;
+    const response = await fetch(`${BASE_URL}10&offset=${currentOffset}`); // anfrage an die API
+    const data = await response.json(); // Response-Objekt wird jetzt lesbar gemacht
+    const results = data.results; // jetzt wird aus dem object auf results zugegriffen name und weitere url
 
     for (let result of results) {
         const detailsRes = await fetch(result.url);
         const pokemonDetails = await detailsRes.json();
-        pokemonArray.push(pokemonDetails);
+        pokemonArray.push(pokemonDetails); // holt details zum Pokemon, ID,Types
 
         const speciesRes = await fetch(pokemonDetails.species.url);
         const speciesData = await speciesRes.json();
 
         const evoChainRes = await fetch(speciesData.evolution_chain.url);
         const evoChainData = await evoChainRes.json();
-
+    
         const evoImages = [];
 
-    
         let current = evoChainData.chain;
 
         for (let i = 0; i < 3 && current; i++) {
@@ -61,7 +60,8 @@ async function loadMorePokemon() {
             const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
             const data = await res.json();
             evoImages.push(data.sprites.front_default);
-
+            console.log(current);
+            
             current = current.evolves_to[0]; 
         }
 
@@ -71,7 +71,7 @@ async function loadMorePokemon() {
     currentOffset += 20;
     hideSpinner();
     displayPokemon();
-}
+} // schwierige function, verstehe es noch nicht ganz
 
 
 
