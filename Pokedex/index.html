@@ -7,23 +7,33 @@
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="./styles/modal.css" />
   <link rel="stylesheet" href="./styles/loading.css" />
-   <script src="./scripte.js"></script>
+  <link rel="stylesheet" href="./styles/feste_tags.css">
+  <link rel="shortcut icon" href="./assets/favcon/pokeball.png" type="image/x-icon">
+  <a href="https://www.flaticon.com/de/kostenlose-icons/pokemon" title="pokémon Icons"Pokémon Icons erstellt von Nikita Golubev - Flaticon></a>
+  <script src="./scripte.js"></script>
   <script src="./scripts/template.js"></script>
+  <script src="./scripts/spinner.js"></script>
+
 </head>
 <body onload="init()">
 
  
   <header>
+    <div class="head_input">
     <input type="text" id="searchInput" placeholder="Search Pokémon..." />
+    </div>
   </header>
 
- 
-  <div id="spinner" class="hidden">Loading...</div>
-
- 
   <main>
-    <div class="pokemon" id="content"></div>
-    <button onclick="loadMore()" id="loadMoreBtn">Weitere anzeigen</button>
+
+  <div id="spinner" class="hidden">
+      <div class="pokemon_spinner grey"></div>
+  </div>
+
+    <div class="pokemon" id="content">
+    </div>
+
+    
   </main>
 
  
@@ -33,6 +43,10 @@
       <div id="modal-content"></div>
     </div>
   </div>
-
+<footer>
+    <div class="load_more_poke">
+      <button class="load_more_button" onclick="loadMore()" id="loadMoreBtn">Weitere anzeigen</button>
+    </div>
+</footer>
 </body>
 </html>

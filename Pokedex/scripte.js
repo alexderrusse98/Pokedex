@@ -32,6 +32,7 @@ let pokemonEvoImg = [];
 async function init() {
     setupLiveSearch(); // was macht diese function genau? aktiviert das input Feld
     await loadMorePokemon(); // warum await? es holt schon mal die Pokemon
+
 }
 
 async function loadMorePokemon() {
@@ -60,7 +61,7 @@ async function loadMorePokemon() {
             const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
             const data = await res.json();
             evoImages.push(data.sprites.front_default);
-            console.log(current);
+    
             
             current = current.evolves_to[0]; 
         }
@@ -86,7 +87,6 @@ function displayPokemon() {
         container.innerHTML += templatePokemon(p, i, bgColor);
     }
 }
-
 
 function openPokemonModal(index) {
     slideIndex = index;
@@ -176,15 +176,6 @@ function renderFilteredPokemon(filtered) {
         container.innerHTML += templatePokemon(p, i, bgColor);
     }
 }
-
-
-function showSpinner() {
-    document.getElementById('spinner').classList.remove('hidden');
-}
-function hideSpinner() {
-    document.getElementById('spinner').classList.add('hidden');
-}
-
 
 function loadMore() {
     loadMorePokemon();
