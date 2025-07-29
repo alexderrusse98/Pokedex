@@ -1,18 +1,27 @@
 
 .pokemon_spinner {
-  position: fixed;
-  z-index: 9999;
   height: 100px;
   width: 100px;
-  background: linear-gradient(to bottom, rgb(254, 0, 1) 50%, white 50% );
+  background: linear-gradient(to bottom, rgb(254, 0, 1) 50%, white 50%);
   border-radius: 50%;
   border: 8px solid black;
   animation: spin 1s linear infinite;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 50%;
-  left: 50%;
+}
+
+#spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(15 14 89 / 70%);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pokemon_spinner::before {
@@ -49,11 +58,12 @@
   }
 }
 .hidden {
-    display: none !important;
+   display: none !important;
 }
 
 /* 
 spinner ist links an der Seite
 input Feld 
 Button ist beim Laden zusehen
+ 
 */

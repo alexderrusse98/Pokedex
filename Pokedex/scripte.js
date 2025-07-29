@@ -180,3 +180,28 @@ function renderFilteredPokemon(filtered) {
 function loadMore() {
     loadMorePokemon();
 }
+function likeButton() {
+  const likeButton = document.getElementById('like-button');
+
+  if (likeButton.textContent === '🖤') {
+    likeButton.textContent = '💖';
+  } else {
+    likeButton.textContent = '🖤';
+  }
+}
+
+
+function barColorChange(){
+    let color = document.getElementById('bar_fill_color');
+
+}
+
+function showSpinner() {
+  document.getElementById('spinner').classList.remove('hidden');
+  document.body.style.overflow = 'hidden'; // Scrollen verhindern
+}
+
+function hideSpinner() {
+  document.getElementById('spinner').classList.add('hidden');
+  document.body.style.overflow = ''; // Scrollen wieder erlauben
+}

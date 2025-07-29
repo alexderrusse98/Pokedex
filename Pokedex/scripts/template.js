@@ -14,11 +14,21 @@
 } // <div></div>
 function templatePokemonModal(pokemon, evoHtml) {
     return `
-        <span class="modal-close" onclick="closeModal()">&times;</span>
-        <p>#${pokemon.id}</p>
-        <h2 class="modal_h2">${pokemon.name}</h2>
-        <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-
+        <div class="modal_head_line"> 
+            <span class="modal-close" onclick="closeModal()">&#8617</span>
+            <span class="like_button" id="like-button" onclick="likeButton()">🖤</span>
+        </div>
+            <div class="modal_head_description">
+                <div class="modal_title_types">
+                    <h2 class="modal_h2">${pokemon.name}</h2>
+                </div>
+                    <p class="modal_head_id">#${pokemon.id}</p>
+            </div>
+        <div class="modal_img">
+            <p>${pokemon.types.map(t => `<p class="typ_attributes_p_tag">${t.type.name}</p>`).join(' ')}</p>
+            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+        </div>
+        
         <!--  NavBar mit Tabs -->
         <div class="modal_content_section">
             <ul class="tab-nav">
@@ -29,26 +39,38 @@ function templatePokemonModal(pokemon, evoHtml) {
 
         <!--  Inhalt pro Tab -->
         <div id="basics" class="tab-content">
-            <p><strong>Typ:</strong> ${pokemon.types[0].type.name}</p>
-            <p><strong>Größe:</strong> ${pokemon.height / 10} m</p>
-            <p><strong>Gewicht:</strong> ${pokemon.weight / 10} kg</p>
+            <div class="modal_content_first_tab">
+                    <p><strong>Typ:</strong> ${pokemon.types[0].type.name}</p>
+                    <p><strong>Größe:</strong> ${pokemon.height / 10} m</p>
+                    <p><strong>Gewicht:</strong> ${pokemon.weight / 10} kg</p>
+                <div class="modal_attacs">
+                    <p><strong>Attacs:</strong> ${pokemon.abilities.map(a => `<p>${a.ability.name}</p>`).join('/')}</p>
+                </div>
+            </div>
         </div>
-        
+
+
+
+
          <!--  Diagramm -->
          
         <div id="stats" class="tab-content" style="display:none;">
-            ${pokemon.stats.map(attribut => ` 
-        <div class="stat-row">
-            <span class="stat-name">${attribut.stat.name.toUpperCase()}:</span> 
-            <div class="stat-bar">
-                <div class="stat-fill" style="width: ${attribut.base_stat / 2}%;">
-        </div>
-                <span class="stat-value">${attribut.base_stat}</span>
+            <div class="modal_content_first_tab">
+               ${pokemon.stats.map((attribut, index) => ` 
+  <div class="stat-row">
+    <span class="stat-name">${attribut.stat.name.toUpperCase()}:</span> 
+    <div class="stat-bar">
+      <div 
+        class="stat-fill ${index % 2 === 0 ? 'even' : 'odd'}" 
+        style="width: ${attribut.base_stat / 2}%;">
+      </div>
+      <span class="stat-value">${attribut.base_stat}</span>
+    </div>
+  </div>
+`).join('')}
+
             </div>
         </div>
-            `).join('')}
-        </div>
-
         
     
 
@@ -63,5 +85,5 @@ function templatePokemonModal(pokemon, evoHtml) {
         </div>
     `;
 }
-
+// <div></div>
 

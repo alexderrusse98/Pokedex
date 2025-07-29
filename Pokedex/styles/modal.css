@@ -17,36 +17,46 @@
 
 .modal_content_section{
   background-color: white;
+  border-radius: 0 0 28px 28px;
+  min-height: 350px;
 }
 .modal-box {
   border-radius: 12px;
-  min-width: 300px;
-  min-height: 400px;
+  min-height: 530px;
+  min-width: 330px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.6s ease-in-out;
   position: relative;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
 .modal-close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
   font-size: 1.5rem;
   cursor: pointer;
   color: #888;
   transition: color 0.2s;
 }
-
+.modal_head_line{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding:8px 16px 0 16px;
+}
+.modal_head_description{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px 0 16px;
+  text-transform: capitalize;
+}
+.modal_img{
+  object-fit: cover;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
 .modal-close:hover {
   color: #000;
 }
@@ -59,9 +69,57 @@
 .prev, .next{
   border-radius: 50%;
   border: none;
-  font-size: 50px;
+  font-size: 40px;
 }
 .prev:hover, .next:hover{
-  background-color: #444045;
+  background-color: #8b858d;
   color: white;
+}
+.modal_attacs{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+}
+.like_button{
+  cursor: pointer;
+  font-size: 24px;
+}
+.modal_content_first_tab{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.typ_attributes_p_tag{
+  display: flex;
+  justify-content: center;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+.stat-fill {
+  height: 10px;
+  border-radius: 5px;
+}
+
+.stat-fill.even {
+  background-color: green;
+}
+
+.stat-fill.odd {
+  background-color: red;
+}
+.hidden {
+  display: none;
 }
