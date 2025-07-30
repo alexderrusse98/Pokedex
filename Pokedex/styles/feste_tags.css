@@ -56,3 +56,12 @@ input{
 ::placeholder {
   color: white; 
 }
+p{
+  text-transform: capitalize;
+  margin: 0;
+  padding: 0;
+}
+h3{
+  font-size: 15px;
+  text-transform: capitalize;
+}

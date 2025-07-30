@@ -12,7 +12,7 @@
             </div>
         `;
 } // <div></div>
-function templatePokemonModal(pokemon, evoHtml) {
+function templatePokemonModal(pokemon, evoHtml, description) {
     return `
         <div class="modal_head_line"> 
             <span class="modal-close" onclick="closeModal()">&#8617</span>
@@ -38,13 +38,17 @@ function templatePokemonModal(pokemon, evoHtml) {
             </ul>
 
         <!--  Inhalt pro Tab -->
+
         <div id="basics" class="tab-content">
             <div class="modal_content_first_tab">
                     <p><strong>Typ:</strong> ${pokemon.types[0].type.name}</p>
                     <p><strong>Größe:</strong> ${pokemon.height / 10} m</p>
                     <p><strong>Gewicht:</strong> ${pokemon.weight / 10} kg</p>
                 <div class="modal_attacs">
-                    <p><strong>Attacs:</strong> ${pokemon.abilities.map(a => `<p>${a.ability.name}</p>`).join('/')}</p>
+                    <p><strong>Abilities:</strong> ${pokemon.abilities.map(a => `<p>${a.ability.name}</p>`).join('/')}</p>
+                </div>
+                <div class="modal_description">
+                <p class="modal_description"><strong>Description:</strong>${description}</p>
                 </div>
             </div>
         </div>
@@ -55,7 +59,7 @@ function templatePokemonModal(pokemon, evoHtml) {
          <!--  Diagramm -->
          
         <div id="stats" class="tab-content" style="display:none;">
-            <div class="modal_content_first_tab">
+            <div class="modal_content_second_tab">
                ${pokemon.stats.map((attribut, index) => ` 
   <div class="stat-row">
     <span class="stat-name">${attribut.stat.name.toUpperCase()}:</span> 
@@ -74,7 +78,7 @@ function templatePokemonModal(pokemon, evoHtml) {
         
     
 
-        <div id="evo" class="tab-content" style="display:none;">
+        <div id="evo" class="tab-content evolution" style="display:none;">
             ${evoHtml}
         </div>
         

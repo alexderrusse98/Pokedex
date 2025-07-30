@@ -28,11 +28,13 @@ let currentOffset = 0;
 let slideIndex = 0;
 
 let pokemonEvoImg = [];
+let pokemonEvoImgShiny = [];
+
+let pokemonEvoNames = [];
 
 async function init() {
     setupLiveSearch(); // was macht diese function genau? aktiviert das input Feld
     await loadMorePokemon(); // warum await? es holt schon mal die Pokemon
-
 }
 
 async function loadMorePokemon() {
@@ -53,20 +55,30 @@ async function loadMorePokemon() {
         const evoChainData = await evoChainRes.json();
     
         const evoImages = [];
-
+        const shinyImages = [];
+        const evoNames = [];
+        const description = getFlavorText(speciesData, 'en');
+        pokemonDetails.description = description;
         let current = evoChainData.chain;
+
+    
+        
 
         for (let i = 0; i < 3 && current; i++) {
             const name = current.species.name;
             const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
             const data = await res.json();
             evoImages.push(data.sprites.front_default);
+            evoNames.push(name);
     
-            
+        
+    
             current = current.evolves_to[0]; 
         }
 
         pokemonEvoImg.push(evoImages);
+        pokemonEvoNames.push(evoNames);
+        pokemonEvoImgShiny.push(shinyImages);
     }
 
     currentOffset += 20;
@@ -74,7 +86,12 @@ async function loadMorePokemon() {
     displayPokemon();
 } // schwierige function, verstehe es noch nicht ganz
 
-
+function getFlavorText(speciesData, langCode){
+    const entry = speciesData.flavor_text_entries.find(
+        (entry) => entry.language.name === langCode
+        );
+        return entry ? entry.flavor_text.replace(/\f/g, ' ') : 'Keine Beschreibung verfügbar.';
+}
 
 function displayPokemon() {
     const container = document.getElementById('content');
@@ -94,13 +111,21 @@ function openPokemonModal(index) {
     const modal = document.getElementById('modal');
     const content = document.getElementById('modal-content');
     changeColor(content, p);
-
     const evolutionImages = pokemonEvoImg[index];
+    const evoNames = pokemonEvoNames[index];
     let evoHtml = '';
-    for (let i = 0; i < evolutionImages.length; i++) {
-        evoHtml += `<img src="${evolutionImages[i]}" alt="evolution" style="width: 100px; margin-right: 10px;">`;
-    }
-    content.innerHTML = templatePokemonModal(p, evoHtml);
+for (let i = 0; i < evolutionImages.length; i++) {
+    evoHtml += `<div class="modal_evo_content${i}">
+            <h3 class="evo_example_titles${i}">${evoNames[i]}</h3>
+            <img src="${evolutionImages[i]}" alt="evolution normal" style="width: 100px;">
+         </div> `;
+         console.log(i);
+         
+}
+
+    const description = p.description;
+    content.innerHTML = templatePokemonModal(p, evoHtml, description);
+
 
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
@@ -188,12 +213,6 @@ function likeButton() {
   } else {
     likeButton.textContent = '🖤';
   }
-}
-
-
-function barColorChange(){
-    let color = document.getElementById('bar_fill_color');
-
 }
 
 function showSpinner() {
