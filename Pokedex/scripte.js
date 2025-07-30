@@ -113,15 +113,16 @@ function openPokemonModal(index) {
     changeColor(content, p);
     const evolutionImages = pokemonEvoImg[index];
     const evoNames = pokemonEvoNames[index];
-    let evoHtml = '';
+let evoHtml = '<div class="evolution-wrapper">';
 for (let i = 0; i < evolutionImages.length; i++) {
-    evoHtml += `<div class="modal_evo_content${i}">
-            <h3 class="evo_example_titles${i}">${evoNames[i]}</h3>
+    evoHtml += `
+        <div class="modal_evo_content">
+            <h3 class="evo_example_title">${evoNames[i]}</h3>
             <img src="${evolutionImages[i]}" alt="evolution normal" style="width: 100px;">
-         </div> `;
-         console.log(i);
-         
+        </div>`;
 }
+evoHtml += '</div>';
+
 
     const description = p.description;
     content.innerHTML = templatePokemonModal(p, evoHtml, description);

@@ -48,7 +48,7 @@ function templatePokemonModal(pokemon, evoHtml, description) {
                     <p><strong>Abilities:</strong> ${pokemon.abilities.map(a => `<p>${a.ability.name}</p>`).join('/')}</p>
                 </div>
                 <div class="modal_description">
-                <p class="modal_description"><strong>Description:</strong>${description}</p>
+                <p class="modal_description"><strong>Description:</strong> ${description}</p>
                 </div>
             </div>
         </div>

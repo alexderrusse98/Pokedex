@@ -17,7 +17,7 @@
 
 .modal_content_section{
   background-color: white;
-  border-radius: 0 0 28px 28px;
+  border-radius:28px;
   min-height: 350px;
 }
 .modal-box {
@@ -151,27 +151,26 @@
   text-transform: none !important;
   padding: 0 6px 0 6px;
 }
-.modal_evo_content0{
+/* Wrapper, der die Evolutionen horizontal nebeneinander anordnet */
+.evolution-wrapper {
   display: flex;
-    flex-direction: column;
-    align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap; /* optional für kleine Bildschirme */
+  margin-top: 10px;
 }
-.modal_evo_content1{
+
+/* Einzelnes Evolutionselement */
+.modal_evo_content {
   display: flex;
-    flex-direction: column;
-    align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
-.modal_evo_content2{
-  display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.evo_example_titles0{
-  margin-bottom: 0;
-}
-.evo_example_titles1{
-  margin-bottom: 0;
-}
-.evo_example_titles2{
-  
+
+/* Titel über dem Bild */
+.evo_example_title {
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-transform: capitalize;
+  text-align: center;
 }
