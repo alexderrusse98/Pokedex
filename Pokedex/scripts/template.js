@@ -24,9 +24,9 @@ function templatePokemonModal(pokemon, evoHtml, description) {
                 </div>
                     <p class="modal_head_id">#${pokemon.id}</p>
             </div>
-        <div class="modal_img">
+        <div class="modal_img_and_typ">
             <p>${pokemon.types.map(t => `<p class="typ_attributes_p_tag">${t.type.name}</p>`).join(' ')}</p>
-            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+            <img class="modal_title_img" src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
         </div>
         
         <!--  NavBar mit Tabs -->

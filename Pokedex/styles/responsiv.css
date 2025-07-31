@@ -1,7 +1,59 @@
 
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 1240px) and (max-width: 1441px){
+
+  h3{
+    font-size: 20px;
+  }
+
+  .pokemon-card {
+    min-height: 220px;
+    width: 260px;
+  }
+  .pokemon-card_title{
+    font-size: 32px;
+  }
+  .typ_attributes_p_tag{
+   font-size: 18px;
+  }
+  .pokemon-card img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .modal_h2{
+    font-size: 32px;
+  }
+  .modal_head_id{
+    font-size: 24px;
+  }
+  .tab-nav li a{
+    font-size: 18px;
+  }
+  .modal_content_first_tab {
+    font-size: 18px;
+    gap: 26px;
+  }
+  .stat-name {
+    font-size: 18px;
+  }
+  .modal_content_section {
+    min-height: 380px;
+  }
+  .slide_button{
+    bottom: -40px;
+  }
+  .tab-content {
+    margin-top: 18px;
+  }
+
+}
+
+
+
+
+@media screen and (min-width: 1440px) {
   body {
-    max-width: 1920px;
+    max-width: 1440px;
   }
 }
 
@@ -20,17 +72,68 @@
   }
 
   .modal_content_section {
-    flex: 1;               /* Damit es den verbleibenden Platz einnimmt */
-    overflow-y: auto;      /* Scrollen, wenn Inhalt zu lang */
+    flex: 1;              
+    overflow-y: auto; 
+    height: 100%;     
   }
 
   .slide_button {
-    position: sticky !important; /* Bleibt am unteren Rand des Modal-Contents */
     bottom: 0;
-    background-color: white; /* Optional, damit Buttons gut sichtbar sind */
+    background-color: white;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     z-index: 10;
   }
+  .modal_head_line{
+    border-radius: 0;
+  }
+  .modal_content{
+  border-radius: 0px;
+}
+.slide_button{
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+  .modal-close {
+    font-size: 30px;
+  }
+  .like_button{
+    font-size: 30px;
+  }
+  .modal_h2{
+    font-size: 30px;
+  }
+  .modal_head_id{
+    font-size: 24px;
+  }
+  .typ_attributes_p_tag{
+    width: 80px;
+    font-size: 20px;
+  }
+  .tab-nav{
+    font-size: 20px;
+  }
+  .modal_content_first_tab{
+    font-size: 20px;
+    gap: 32px;
+  }
+  .tab-content {
+    margin-top: 50px;
+  }
+  .stat-row {
+    margin: 16px 0;
+  }
+  .stat-name {
+    font-size: 20px;
+  }
+  .evo_example_title {
+    font-size: 24px;
+}
 }
