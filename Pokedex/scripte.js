@@ -39,52 +39,65 @@ async function init() {
 
 async function loadMorePokemon() {
     showSpinner();
-    const response = await fetch(`${BASE_URL}10&offset=${currentOffset}`); // anfrage an die API
-    const data = await response.json(); // Response-Objekt wird jetzt lesbar gemacht
-    const results = data.results; // jetzt wird aus dem object auf results zugegriffen name und weitere url
-
+    const results = await fetchPokemonList(currentOffset);
+    
     for (let result of results) {
-        const detailsRes = await fetch(result.url);
-        const pokemonDetails = await detailsRes.json();
-        pokemonArray.push(pokemonDetails); // holt details zum Pokemon, ID,Types
+        const pokemonDetails = await fetchPokemonDetails(result.url);
+        pokemonArray.push(pokemonDetails);
 
-        const speciesRes = await fetch(pokemonDetails.species.url);
-        const speciesData = await speciesRes.json();
-
-        const evoChainRes = await fetch(speciesData.evolution_chain.url);
-        const evoChainData = await evoChainRes.json();
-    
-        const evoImages = [];
-        const shinyImages = [];
-        const evoNames = [];
-        const description = getFlavorText(speciesData, 'en');
-        pokemonDetails.description = description;
-        let current = evoChainData.chain;
-
-    
-        
-
-        for (let i = 0; i < 3 && current; i++) {
-            const name = current.species.name;
-            const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-            const data = await res.json();
-            evoImages.push(data.sprites.front_default);
-            evoNames.push(name);
-    
-        
-    
-            current = current.evolves_to[0]; 
-        }
-
-        pokemonEvoImg.push(evoImages);
-        pokemonEvoNames.push(evoNames);
-        pokemonEvoImgShiny.push(shinyImages);
+        const evoData = await fetchEvolutionData(pokemonDetails.species.url);
+        addEvolutionData(evoData, pokemonDetails);
     }
 
     currentOffset += 20;
     hideSpinner();
     displayPokemon();
-} // schwierige function, verstehe es noch nicht ganz
+}
+async function fetchPokemonList(offset) {
+    const response = await fetch(`${BASE_URL}10&offset=${offset}`);
+    const data = await response.json();
+    return data.results;
+}
+
+async function fetchPokemonDetails(url) {
+    const detailsRes = await fetch(url);
+    const pokemonDetails = await detailsRes.json();
+
+    const speciesRes = await fetch(pokemonDetails.species.url);
+    const speciesData = await speciesRes.json();
+    const description = getFlavorText(speciesData, 'en');
+    pokemonDetails.description = description;
+
+    pokemonDetails._speciesData = speciesData; // temporär speichern
+    return pokemonDetails;
+}
+async function fetchEvolutionData(speciesUrl) {
+    const speciesRes = await fetch(speciesUrl);
+    const speciesData = await speciesRes.json();
+
+    const evoChainRes = await fetch(speciesData.evolution_chain.url);
+    return await evoChainRes.json();
+}
+
+async function addEvolutionData(evoChainData) {
+    const evoImages = [];
+    const evoNames = [];
+    const shinyImages = [];
+    let current = evoChainData.chain;
+
+    for (let i = 0; i < 3 && current; i++) {
+        const name = current.species.name;
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        const data = await res.json();
+        evoImages.push(data.sprites.front_default);
+        evoNames.push(name);
+        current = current.evolves_to[0];
+    }
+
+    pokemonEvoImg.push(evoImages);
+    pokemonEvoNames.push(evoNames);
+    pokemonEvoImgShiny.push(shinyImages);
+}
 
 function getFlavorText(speciesData, langCode){
     const entry = speciesData.flavor_text_entries.find(
@@ -118,7 +131,7 @@ for (let i = 0; i < evolutionImages.length; i++) {
     evoHtml += `
         <div class="modal_evo_content">
             <h3 class="evo_example_title">${evoNames[i]}</h3>
-            <img src="${evolutionImages[i]}" alt="evolution normal" style="width: 100px;">
+            <img class="evoImg" src="${evolutionImages[i]}" alt="evolution normal" style="width: 100px;">
         </div>`;
 }
 evoHtml += '</div>';

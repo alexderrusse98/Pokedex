@@ -71,6 +71,16 @@
   border-radius: 6px;
   gap: 1px;
 }
+.typ_attributes_p_tag_modal{
+  margin: 7px 0 0 0;
+  width: 60px;
+  color: white;
+  font-size: 16px;
+  text-transform: capitalize;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-radius: 6px;
+  gap: 1px;
+}
 .tab-nav {
     list-style: none;
     display: flex;
@@ -163,4 +173,50 @@
   text-align: center;
   height: 30px;
   font-size: 18px;
+}
+
+.scroll-link {
+  position: fixed;
+  right: 20px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ff4c4c;
+
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: background 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+}
+.scroll_link_bottom{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  gap: 8px;
+
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ff4c4c;
+
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: background 0.3s ease, transform 0.3s ease;
+  z-index: 999;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1920px;
+  width: 100%;
+  padding: 0 16px; /* Optional: etwas Abstand links/rechts auf kleineren Geräten */
 }

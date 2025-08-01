@@ -1,30 +1,83 @@
+@media screen and (min-width: 1540px) and (max-width: 1920px) {
 
-@media screen and (min-width: 1240px) and (max-width: 1441px){
-
-  h3{
-    font-size: 20px;
+}
+@media screen and (min-width: 1141px) and (max-width: 1540px){
+    body{
+    max-width: 1540px;
   }
-
   .pokemon-card {
-    min-height: 220px;
-    width: 260px;
+    min-height: 280px;
+    width: 210px;
   }
   .pokemon-card_title{
-    font-size: 32px;
+    font-size: 24px;
   }
   .typ_attributes_p_tag{
    font-size: 18px;
   }
   .pokemon-card img {
+    width: 100px;
+    height: 110px;
+    object-fit: cover;
+}
+ .pokemon_card_number {
+    font-size: 18px;  
+  }
+    input {
     width: 140px;
-    height: 140px;
+    height: 24px;
+    font-size: 16px;
+}
+.load_more_button {
+     width: 140px;
+    height: 24px;
+    font-size: 16px;
+}
+}
+
+@media screen and (min-width: 850px) and (max-width: 1140px){
+  body{
+    max-width: 1140px;
+  }
+  h3{
+    font-size: 20px;
+  }
+  input {
+    width: 140px;
+    height: 24px;
+    font-size: 16px;
+}
+.load_more_button {
+     width: 140px;
+    height: 24px;
+    font-size: 16px;
+}
+ .pokemon-card {
+    min-height: 180px;
+    width: 200px;
+  }
+   .pokemon-card_title{
+    font-size: 18px;
+  }
+  .pokemon_card_number {
+    font-size: 15px;  
+  }
+  .typ_attributes_p_tag{
+   font-size: 18px;
+  }
+  .typ_attributes_p_tag_modal{
+   font-size: 18px;
+  }
+  .pokemon-card img {
+    width: 100px;
+    height: 100px;
   }
 
   .modal_h2{
-    font-size: 32px;
+    font-size: 24px;
   }
   .modal_head_id{
-    font-size: 24px;
+    font-size: 18px;
   }
   .tab-nav li a{
     font-size: 18px;
@@ -45,16 +98,6 @@
   .tab-content {
     margin-top: 18px;
   }
-
-}
-
-
-
-
-@media screen and (min-width: 1440px) {
-  body {
-    max-width: 1440px;
-  }
 }
 
 @media screen and (max-width: 400px) and (min-width: 320px) {
@@ -74,7 +117,7 @@
   .modal_content_section {
     flex: 1;              
     overflow-y: auto; 
-    height: 100%;     
+    min-height: 100vh; 
   }
 
   .slide_button {
@@ -112,6 +155,10 @@
   }
   .modal_head_id{
     font-size: 24px;
+  }
+  .typ_attributes_p_tag_modal{
+    width: 80px;
+    font-size: 20px;
   }
   .typ_attributes_p_tag{
     width: 80px;

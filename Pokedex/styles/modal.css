@@ -123,6 +123,10 @@
   display: flex;
   justify-content: center;
 }
+.typ_attributes_p_tag_modal{
+  display: flex;
+  justify-content: center;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
