@@ -1,10 +1,10 @@
     function templatePokemon(pokemon, index, bgColor) {
         return `
             <div  onclick="openPokemonModal(${index})" class="pokemon-card" style="background-color: ${bgColor};">
-                <p class="pokemon_card_number">#${pokemon.id}</p>
-                <h2 class="pokemon-card_title">${pokemon.name}</h2>
+                    <p class="pokemon_card_number">#${pokemon.id}</p>
+                    <h2 class="pokemon-card_title">${pokemon.name}</h2>
                 <div class="pokemon_card_img_and_types">
-                    <img src="${pokemon.sprites.front_default}" alt="">
+                        <img src="${pokemon.sprites.front_default}" alt="">
                     <div class="typ_attributes">    
                         <p>${pokemon.types.map(t => `<p class="typ_attributes_p_tag">${t.type.name}</p>`).join(' ')}</p>
                     </div>
@@ -28,17 +28,12 @@ function templatePokemonModal(pokemon, evoHtml, description) {
             <p>${pokemon.types.map(t => `<p class="typ_attributes_p_tag_modal">${t.type.name}</p>`).join(' ')}</p>
             <img class="modal_title_img" src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
         </div>
-        
-        <!--  NavBar mit Tabs -->
         <div class="modal_content_section">
             <ul class="tab-nav">
                 <li><a href="#" onclick="showTab('basics')">Basis</a></li>
                 <li><a href="#" onclick="showTab('stats')">Stats</a></li>
                 <li><a href="#" onclick="showTab('evo')">Evolution</a></li>
             </ul>
-
-        <!--  Inhalt pro Tab -->
-
         <div id="basics" class="tab-content">
             <div class="modal_content_first_tab">
                     <p><strong>Typ:</strong> ${pokemon.types[0].type.name}</p>
@@ -48,40 +43,28 @@ function templatePokemonModal(pokemon, evoHtml, description) {
                     <p><strong>Abilities:</strong> ${pokemon.abilities.map(a => `<p>${a.ability.name}</p>`).join('/')}</p>
                 </div>
                 <div class="modal_description">
-                <p class="modal_description"><strong>Description:</strong> ${description}</p>
+                    <p class="modal_description"><strong>Description:</strong> ${description}</p>
                 </div>
             </div>
         </div>
-
-
-
-
-         <!--  Diagramm -->
-         
         <div id="stats" class="tab-content" style="display:none;">
             <div class="modal_content_second_tab">
                ${pokemon.stats.map((attribut, index) => ` 
   <div class="stat-row">
-    <span class="stat-name">${attribut.stat.name.toUpperCase()}:</span> 
+        <span class="stat-name">${attribut.stat.name.toUpperCase()}:</span> 
     <div class="stat-bar">
-      <div 
-        class="stat-fill ${index % 2 === 0 ? 'even' : 'odd'}" 
+      <div class="stat-fill ${index % 2 === 0 ? 'even' : 'odd'}" 
         style="width: ${attribut.base_stat / 2}%;">
       </div>
       <span class="stat-value">${attribut.base_stat}</span>
     </div>
   </div>
 `).join('')}
-
             </div>
         </div>
-        
-    
-
         <div id="evo" class="tab-content evolution" style="display:none;">
             ${evoHtml}
         </div>
-        
             <div class="slide_button">
                 <button class="prev" onclick="changeSlide(-1)">&#8678;</button>
                 <button class="next" onclick="changeSlide(1)">&#8680;</button>
@@ -89,5 +72,12 @@ function templatePokemonModal(pokemon, evoHtml, description) {
         </div>
     `;
 }
-// <div></div>
 
+function templateEvolutionItem(name, imgUrl) {
+    return `
+        <div class="modal_evo_content">
+            <h3 class="evo_example_title">${name}</h3>
+            <img class="evoImg" src="${imgUrl}" alt="evolution normal" style="width: 100px;">
+        </div>
+    `;
+}

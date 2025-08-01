@@ -4,5 +4,3 @@ function showSpinner() {
 function hideSpinner() {
     document.getElementById('spinner').classList.add('hidden');
 }
-
-

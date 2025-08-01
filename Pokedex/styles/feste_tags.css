@@ -41,12 +41,15 @@ footer {
   padding-top: 18px;
   padding-bottom: 18px;
 }
+
 button {
   cursor: pointer;
 }
+
 button:hover {
   transform: scale(1.05);
 }
+
 input{
   border-color: rgb(107, 11, 83);
   width: 160px;
@@ -55,16 +58,18 @@ input{
   background-color: rgb(107, 11, 83);
   font-size: 18px;
 }
+
 ::placeholder {
   color: white; 
 }
+
 p{
   text-transform: capitalize;
   margin: 0;
   padding: 0;
 }
+
 h3{
   font-size: 15px;
   text-transform: capitalize;
 }
-

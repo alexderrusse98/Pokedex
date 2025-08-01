@@ -1,35 +1,45 @@
 @media screen and (min-width: 1540px) and (max-width: 1920px) {
-
+ body{
+    max-width: 1920px;
+  }
 }
+
 @media screen and (min-width: 1141px) and (max-width: 1540px){
-    body{
+  body{
     max-width: 1540px;
   }
+
+  input {
+    width: 140px;
+    height: 24px;
+    font-size: 16px;
+  }
+
   .pokemon-card {
     min-height: 200px;
     width: 210px;
   }
+
   .pokemon-card_title{
     font-size: 24px;
   }
+
   .typ_attributes_p_tag{
-   font-size: 18px;
+    font-size: 18px;
   }
+
   .pokemon-card img {
     width: 100px;
     height: 110px;
     object-fit: cover;
-}
- .pokemon_card_number {
+  }
+
+  .pokemon_card_number {
     font-size: 18px;  
   }
-    input {
+
+  .load_more_button {
     width: 140px;
-    height: 24px;
-    font-size: 16px;
-}
-.load_more_button {
-     width: 140px;
     height: 24px;
     font-size: 16px;
 }
@@ -39,35 +49,44 @@
   body{
     max-width: 1140px;
   }
+
   h3{
     font-size: 20px;
   }
+
   input {
     width: 140px;
     height: 24px;
     font-size: 16px;
-}
-.load_more_button {
+  }
+
+  .load_more_button {
      width: 140px;
     height: 24px;
     font-size: 16px;
-}
- .pokemon-card {
+  }
+
+  .pokemon-card {
     min-height: 180px;
     width: 200px;
   }
-   .pokemon-card_title{
+
+  .pokemon-card_title{
     font-size: 18px;
   }
+
   .pokemon_card_number {
     font-size: 15px;  
   }
+
   .typ_attributes_p_tag{
-   font-size: 18px;
+    font-size: 18px;
   }
+
   .typ_attributes_p_tag_modal{
    font-size: 18px;
   }
+
   .pokemon-card img {
     width: 100px;
     height: 100px;
@@ -76,25 +95,32 @@
   .modal_h2{
     font-size: 24px;
   }
+
   .modal_head_id{
     font-size: 18px;
   }
+
   .tab-nav li a{
     font-size: 18px;
   }
+
   .modal_content_first_tab {
     font-size: 18px;
     gap: 26px;
   }
+
   .stat-name {
     font-size: 18px;
   }
+
   .modal_content_section {
     min-height: 380px;
   }
+
   .slide_button{
-    bottom: -40px;
+    bottom: -15px;
   }
+
   .tab-content {
     margin-top: 18px;
   }
@@ -131,55 +157,68 @@
   .modal_head_line{
     border-radius: 0;
   }
+
   .modal_content{
   border-radius: 0px;
-}
-.slide_button{
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-}
+  }
+
+  .slide_button{
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
 
   .modal-close {
     font-size: 30px;
   }
+
   .like_button{
     font-size: 30px;
   }
+
   .modal_h2{
     font-size: 30px;
   }
+
   .modal_head_id{
     font-size: 24px;
   }
+
   .typ_attributes_p_tag_modal{
     width: 80px;
     font-size: 20px;
   }
+
   .typ_attributes_p_tag{
     width: 80px;
     font-size: 20px;
   }
+
   .tab-nav{
     font-size: 20px;
   }
+
   .modal_content_first_tab{
     font-size: 20px;
     gap: 32px;
   }
+
   .tab-content {
     margin-top: 50px;
   }
+
   .stat-row {
     margin: 16px 0;
   }
+
   .stat-name {
     font-size: 20px;
   }
+  
   .evo_example_title {
     font-size: 24px;
 }

@@ -1,6 +1,6 @@
-const BASE_URL = 'https://pokeapi.co/api/v2/pokemon?limit=';
+let BASE_URL = 'https://pokeapi.co/api/v2/pokemon?limit=';
 
-const typeColors = {
+let typeColors = {
     fire: '#F08030', 
     water: '#6890F0', 
     grass: '#78C850',
@@ -33,49 +33,52 @@ let pokemonEvoImgShiny = [];
 let pokemonEvoNames = [];
 
 async function init() {
-    setupLiveSearch(); // was macht diese function genau? aktiviert das input Feld
-    await loadMorePokemon(); // warum await? es holt schon mal die Pokemon
+    setupLiveSearch();
+    await loadMorePokemon();
 }
 
 async function loadMorePokemon() {
     showSpinner();
-    const results = await fetchPokemonList(currentOffset);
+    let results = await fetchPokemonList(currentOffset);
     
     for (let result of results) {
-        const pokemonDetails = await fetchPokemonDetails(result.url);
+        let pokemonDetails = await fetchPokemonDetails(result.url);
         pokemonArray.push(pokemonDetails);
 
-        const evoData = await fetchEvolutionData(pokemonDetails.species.url);
+        let evoData = await fetchEvolutionData(pokemonDetails.species.url);
         addEvolutionData(evoData, pokemonDetails);
     }
-
     currentOffset += 20;
     hideSpinner();
     displayPokemon();
 }
+
 async function fetchPokemonList(offset) {
-    const response = await fetch(`${BASE_URL}10&offset=${offset}`);
-    const data = await response.json();
+    let response = await fetch(`${BASE_URL}10&offset=${offset}`);
+    let data = await response.json();
     return data.results;
 }
 
 async function fetchPokemonDetails(url) {
-    const detailsRes = await fetch(url);
-    const pokemonDetails = await detailsRes.json();
+    let detailsRes = await fetch(url);
+    let pokemonDetails = await detailsRes.json();
 
-    const speciesRes = await fetch(pokemonDetails.species.url);
-    const speciesData = await speciesRes.json();
-    const description = getFlavorText(speciesData, 'en');
+    let speciesRes = await fetch(pokemonDetails.species.url);
+    let speciesData = await speciesRes.json();
+    let description = getFlavorText(speciesData, 'en');
+
     pokemonDetails.description = description;
 
-    pokemonDetails._speciesData = speciesData; // temporär speichern
+    pokemonDetails.speciesData = speciesData;
+    
     return pokemonDetails;
 }
-async function fetchEvolutionData(speciesUrl) {
-    const speciesRes = await fetch(speciesUrl);
-    const speciesData = await speciesRes.json();
 
-    const evoChainRes = await fetch(speciesData.evolution_chain.url);
+async function fetchEvolutionData(speciesUrl) {
+    let speciesRes = await fetch(speciesUrl);
+    let speciesData = await speciesRes.json();
+
+    let evoChainRes = await fetch(speciesData.evolution_chain.url);
     return await evoChainRes.json();
 }
 
@@ -84,30 +87,27 @@ async function addEvolutionData(evoChainData) {
     const evoNames = [];
     const shinyImages = [];
     let current = evoChainData.chain;
-
     for (let i = 0; i < 3 && current; i++) {
         const name = current.species.name;
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
         const data = await res.json();
         evoImages.push(data.sprites.front_default);
         evoNames.push(name);
-        current = current.evolves_to[0];
-    }
-
+        current = current.evolves_to[0];}
     pokemonEvoImg.push(evoImages);
     pokemonEvoNames.push(evoNames);
     pokemonEvoImgShiny.push(shinyImages);
 }
 
 function getFlavorText(speciesData, langCode){
-    const entry = speciesData.flavor_text_entries.find(
+    let entry = speciesData.flavor_text_entries.find(
         (entry) => entry.language.name === langCode
         );
         return entry ? entry.flavor_text.replace(/\f/g, ' ') : 'Keine Beschreibung verfügbar.';
 }
 
 function displayPokemon() {
-    const container = document.getElementById('content');
+    let container = document.getElementById('content');
     container.innerHTML = '';
 
     for (let i = 0; i < pokemonArray.length; i++) {
@@ -118,45 +118,41 @@ function displayPokemon() {
     }
 }
 
+function getEvolutionHtml(evolutionImages, evoNames) {
+    let evoHtml = '<div class="evolution-wrapper">';
+    for (let i = 0; i < evolutionImages.length; i++) {
+        evoHtml += templateEvolutionItem(evoNames[i], evolutionImages[i]);
+    }
+    evoHtml += '</div>';
+    return evoHtml;
+}
+
+function renderPokemonModal(pokemon, evoHtml, description) {
+    let content = document.getElementById('modal-content');
+    changeColor(content, pokemon);
+    content.innerHTML = templatePokemonModal(pokemon, evoHtml, description);
+}
+
 function openPokemonModal(index) {
     slideIndex = index;
-    const p = pokemonArray[index];
-    const modal = document.getElementById('modal');
-    const content = document.getElementById('modal-content');
-    changeColor(content, p);
-    const evolutionImages = pokemonEvoImg[index];
-    const evoNames = pokemonEvoNames[index];
-let evoHtml = '<div class="evolution-wrapper">';
-for (let i = 0; i < evolutionImages.length; i++) {
-    evoHtml += `
-        <div class="modal_evo_content">
-            <h3 class="evo_example_title">${evoNames[i]}</h3>
-            <img class="evoImg" src="${evolutionImages[i]}" alt="evolution normal" style="width: 100px;">
-        </div>`;
-}
-evoHtml += '</div>';
+    let p = pokemonArray[index];
+    let evoHtml = getEvolutionHtml(pokemonEvoImg[index], pokemonEvoNames[index]);
+    renderPokemonModal(p, evoHtml, p.description);
 
-
-    const description = p.description;
-    content.innerHTML = templatePokemonModal(p, evoHtml, description);
-
-
+    let modal = document.getElementById('modal');
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-
-    modal.onclick = function (event) {
-        if (event.target === modal) closeModal();
-    };
+    modal.onclick = e => { if (e.target === modal) closeModal(); };
 }
+
 
 function showTab(tabId) {
-    const tabs = document.querySelectorAll('.tab-content');
+    let tabs = document.querySelectorAll('.tab-content');
     tabs.forEach(tab => tab.style.display = 'none'); 
 
-    const activeTab = document.getElementById(tabId);
+    let activeTab = document.getElementById(tabId);
     if (activeTab) activeTab.style.display = 'block'; 
 }
-
 
 function closeModal() {
     document.getElementById('modal').style.display = 'none';
@@ -173,17 +169,16 @@ function changeSlide(n) {
 }
 
 function changeColor(content, pokemon) {
-    const mainType = pokemon.types[0].type.name;
-    const bgColor = typeColors[mainType];
+    let mainType = pokemon.types[0].type.name;
+    let bgColor = typeColors[mainType];
     content.style.backgroundColor = bgColor;
 }
 
 function setupLiveSearch() {
-    const input = document.getElementById('searchInput');
+    let input = document.getElementById('searchInput');
 
     input.addEventListener('input', async () => {
         const query = input.value.trim().toLowerCase();
-
         if (query.length < 3) {
             displayPokemon();
             return;
@@ -195,9 +190,9 @@ function setupLiveSearch() {
 }
 
 async function filterPokemon(query) {
-    const filtered = pokemonArray.filter(p => {
-        const name = p.name.toLowerCase();
-        const types = p.types.map(t => t.type.name.toLowerCase());
+    let filtered = pokemonArray.filter(p => {
+        let name = p.name.toLowerCase();
+        let types = p.types.map(t => t.type.name.toLowerCase());
         return name.includes(query) || types.some(type => type.includes(query));
     });
 
@@ -205,7 +200,7 @@ async function filterPokemon(query) {
 }
 
 function renderFilteredPokemon(filtered) {
-    const container = document.getElementById('content');
+    let container = document.getElementById('content');
     container.innerHTML = '';
 
     for (let i = 0; i < filtered.length; i++) {
@@ -219,22 +214,13 @@ function renderFilteredPokemon(filtered) {
 function loadMore() {
     loadMorePokemon();
 }
+
 function likeButton() {
-  const likeButton = document.getElementById('like-button');
+  let likeButton = document.getElementById('like-button');
 
   if (likeButton.textContent === '🖤') {
     likeButton.textContent = '💖';
   } else {
     likeButton.textContent = '🖤';
   }
-}
-
-function showSpinner() {
-  document.getElementById('spinner').classList.remove('hidden');
-  document.body.style.overflow = 'hidden'; // Scrollen verhindern
-}
-
-function hideSpinner() {
-  document.getElementById('spinner').classList.add('hidden');
-  document.body.style.overflow = ''; // Scrollen wieder erlauben
 }
