@@ -34,6 +34,7 @@ let pokemonEvoNames = [];
 
 async function init() {
     setupLiveSearch();
+    checkScrollBalken();
     await loadMorePokemon();
 }
 
@@ -51,6 +52,7 @@ async function loadMorePokemon() {
     currentOffset += 20;
     hideSpinner();
     displayPokemon();
+    checkScrollBalken();
 }
 
 async function fetchPokemonList(offset) {
@@ -119,7 +121,7 @@ function displayPokemon() {
 }
 
 function getEvolutionHtml(evolutionImages, evoNames) {
-    let evoHtml = '<div class="evolution-wrapper">';
+    let evoHtml = '<div class="evolution_wrapper">';
     for (let i = 0; i < evolutionImages.length; i++) {
         evoHtml += templateEvolutionItem(evoNames[i], evolutionImages[i]);
     }
@@ -147,7 +149,7 @@ function openPokemonModal(index) {
 
 
 function showTab(tabId) {
-    let tabs = document.querySelectorAll('.tab-content');
+    let tabs = document.querySelectorAll('.tab_content');
     tabs.forEach(tab => tab.style.display = 'none'); 
 
     let activeTab = document.getElementById(tabId);
@@ -223,4 +225,12 @@ function likeButton() {
   } else {
     likeButton.textContent = '🖤';
   }
+}
+
+function checkScrollBalken() {
+    let scrollBalken = document.documentElement.scrollHeight > window.innerHeight;
+    document.querySelectorAll('.scroll_link').forEach(btn => {btn.style.display = scrollBalken ? "block": "none";
+    });
+    console.log(scrollBalken);
+    
 }

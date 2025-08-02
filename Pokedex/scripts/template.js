@@ -1,8 +1,8 @@
     function templatePokemon(pokemon, index, bgColor) {
         return `
-            <div  onclick="openPokemonModal(${index})" class="pokemon-card" style="background-color: ${bgColor};">
+            <div  onclick="openPokemonModal(${index})" class="pokemon_card" style="background-color: ${bgColor};">
                     <p class="pokemon_card_number">#${pokemon.id}</p>
-                    <h2 class="pokemon-card_title">${pokemon.name}</h2>
+                    <h2 class="pokemon_card_title">${pokemon.name}</h2>
                 <div class="pokemon_card_img_and_types">
                         <img src="${pokemon.sprites.front_default}" alt="">
                     <div class="typ_attributes">    
@@ -15,7 +15,7 @@
 function templatePokemonModal(pokemon, evoHtml, description) {
     return `
         <div class="modal_head_line"> 
-            <span class="modal-close" onclick="closeModal()">&#8617</span>
+            <span class="modal_close" onclick="closeModal()">&#8617</span>
             <span class="like_button" id="like-button" onclick="likeButton()">🖤</span>
         </div>
             <div class="modal_head_description">
@@ -29,16 +29,16 @@ function templatePokemonModal(pokemon, evoHtml, description) {
             <img class="modal_title_img" src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
         </div>
         <div class="modal_content_section">
-            <ul class="tab-nav">
+            <ul class="tab_nav">
                 <li><a href="#" onclick="showTab('basics')">Basis</a></li>
                 <li><a href="#" onclick="showTab('stats')">Stats</a></li>
                 <li><a href="#" onclick="showTab('evo')">Evolution</a></li>
             </ul>
-        <div id="basics" class="tab-content">
+        <div id="basics" class="tab_content">
             <div class="modal_content_first_tab">
                     <p><strong>Typ:</strong> ${pokemon.types[0].type.name}</p>
-                    <p><strong>Größe:</strong> ${pokemon.height / 10} m</p>
-                    <p><strong>Gewicht:</strong> ${pokemon.weight / 10} kg</p>
+                    <p><strong>Size:</strong> ${pokemon.height / 10} m</p>
+                    <p><strong>Weight:</strong> ${pokemon.weight / 10} kg</p>
                 <div class="modal_attacs">
                     <p><strong>Abilities:</strong> ${pokemon.abilities.map(a => `<p>${a.ability.name}</p>`).join('/')}</p>
                 </div>
@@ -47,22 +47,22 @@ function templatePokemonModal(pokemon, evoHtml, description) {
                 </div>
             </div>
         </div>
-        <div id="stats" class="tab-content" style="display:none;">
+        <div id="stats" class="tab_content" style="display:none;">
             <div class="modal_content_second_tab">
                ${pokemon.stats.map((attribut, index) => ` 
-  <div class="stat-row">
-        <span class="stat-name">${attribut.stat.name.toUpperCase()}:</span> 
-    <div class="stat-bar">
-      <div class="stat-fill ${index % 2 === 0 ? 'even' : 'odd'}" 
+  <div class="stat_row">
+        <span class="stat_name">${attribut.stat.name.toUpperCase()}:</span> 
+    <div class="stat_bar">
+      <div class="stat_fill ${index % 2 === 0 ? 'even' : 'odd'}" 
         style="width: ${attribut.base_stat / 2}%;">
       </div>
-      <span class="stat-value">${attribut.base_stat}</span>
+      <span class="stat_value">${attribut.base_stat}</span>
     </div>
   </div>
 `).join('')}
             </div>
         </div>
-        <div id="evo" class="tab-content evolution" style="display:none;">
+        <div id="evo" class="tab_content evolution" style="display:none;">
             ${evoHtml}
         </div>
             <div class="slide_button">

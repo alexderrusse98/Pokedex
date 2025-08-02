@@ -2,13 +2,14 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  scroll-behavior: smooth;
+  align-items: center;
 }
 
 header {
@@ -16,14 +17,16 @@ header {
   height: 100px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  text-align: center;
   background-color:#112533;
   padding-top: 18px;
   padding-bottom: 18px;
+  max-width: 1920px;
 }
 
 main {
- max-width: 1920px;
+  max-width: 1920px;
+  width: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -36,10 +39,11 @@ footer {
   height: 100px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  text-align: center;
   background-color: #112533;
   padding-top: 18px;
   padding-bottom: 18px;
+   max-width: 1920px;
 }
 
 button {
@@ -72,4 +76,7 @@ p{
 h3{
   font-size: 15px;
   text-transform: capitalize;
+}
+.display_none {
+  display: none;
 }

@@ -1,8 +1,4 @@
-.display_none {
-  display: none;
-}
-
-.modal-overlay {
+.modal_overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,15 +10,17 @@
   align-items: center;
   z-index: 1000;
 }
+
 .modal_content{
   border-radius: 28px;
 }
+
 .modal_content_section{
   background-color: white;
   border-radius:28px;
   min-height: 350px;
 }
-.modal-box {
+.modal_box {
   border-radius: 12px;
   min-height: 530px;
   max-height: 600px;
@@ -33,17 +31,20 @@
   position: relative;
 
 }
+
 .modal_title_img{
   height: 120px;
   width: 120px;
   object-fit: cover;
 }
-.modal-close {
+
+.modal_close {
   font-size: 1.5rem;
   cursor: pointer;
   color: #888;
   transition: color 0.2s;
 }
+
 .modal_head_line{
     display: flex;
     flex-direction: row;
@@ -51,6 +52,7 @@
     align-items: center;
     padding:8px 16px 0 16px;
 }
+
 .modal_head_description{
   display: flex;
   flex-direction: row;
@@ -59,6 +61,7 @@
   padding: 0 16px 0 16px;
   text-transform: capitalize;
 }
+
 .modal_img_and_typ{
   object-fit: cover;
   display: flex;
@@ -66,9 +69,11 @@
   align-items: center;
   justify-content: space-evenly;
 }
-.modal-close:hover {
+
+.modal_close:hover {
   color: #000;
 }
+
 .slide_button{
   position: absolute;
   bottom: 5px;
@@ -78,23 +83,26 @@
   justify-content: space-between;
   padding: 0 20px;
 }
+
 .prev {
   border-radius: 50%;
   border: none;
   font-size: 40px;
   transition: background 0.4s;
 }
+
 .prev:hover, .next:hover{
   background-color: #ccc;
   color: white;
-  
 }
+
 .next{
   border-radius: 50%;
   border: none;
   font-size: 40px;
   transition: background 0.4s;
 }
+
 .modal_attacs{
     display: flex;
     flex-direction: row;
@@ -102,10 +110,102 @@
     justify-content: flex-start;
     gap: 5px;
 }
+
 .like_button{
   cursor: pointer;
   font-size: 24px;
 }
+
+.typ_attributes_p_tag_modal{
+  margin: 7px 0 0 0;
+  width: 60px;
+  color: white;
+  font-size: 16px;
+  text-transform: capitalize;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-radius: 6px;
+  gap: 1px;
+}
+
+.tab_nav li a {
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #eee;
+    border-radius: 8px;
+    color: black;
+}
+
+.tab_nav li a:hover {
+    background-color: #ccc;
+}
+
+.tab_nav {
+    list-style: none;
+    display: flex;
+    gap: 12px;
+    padding: 0;
+    margin: 16px 0;
+    justify-content: center;
+}
+
+.tab_nav li a {
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #eee;
+    border-radius: 8px;
+    color: #333;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.tab_nav li a:hover {
+    background-color: #ccc;
+}
+
+.tab_content {
+    margin-top: 12px;
+}
+
+.stat_row {
+  margin: 8px 0;
+}
+
+.stat_name {
+  display: inline-block;
+  width: 80px;
+  font-weight: bold;
+}
+
+.stat_bar {
+  display: inline-block;
+  width: 200px;
+  height: 20px;
+  background-color: #eee;
+  position: relative;
+  vertical-align: middle;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.stat_fill {
+  height: 100%;
+  background-color: #4caf50;
+  border-radius: 10px 0 0 10px;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.stat_value {
+  position: absolute;
+  right: 8px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #000;
+}
+
 .modal_content_first_tab{
   display: flex;
   flex-direction: column;
@@ -123,10 +223,12 @@
   display: flex;
   justify-content: center;
 }
+
 .typ_attributes_p_tag_modal{
   display: flex;
   justify-content: center;
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -138,45 +240,39 @@
   }
 }
 
-
-.stat-fill {
-  height: 20px;
-  border-radius: 5px;
-}
-
-.stat-fill.even {
+.stat_fill.even {
   background-color: green;
 }
 
-.stat-fill.odd {
+.stat_fill.odd {
   background-color: red;
 }
+
 .hidden {
   display: none;
 }
+
 .modal_description {
   text-align: center;        
   color: #333;               
   text-transform: none !important;
   padding: 0 6px 0 6px;
 }
-/* Wrapper, der die Evolutionen horizontal nebeneinander anordnet */
-.evolution-wrapper {
+
+.evolution_wrapper {
   display: flex;
   justify-content: center;
   gap: 16px;
-  flex-wrap: wrap; /* optional für kleine Bildschirme */
+  flex-wrap: wrap;
   margin-top: 10px;
 }
 
-/* Einzelnes Evolutionselement */
 .modal_evo_content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Titel über dem Bild */
 .evo_example_title {
   margin-bottom: 5px;
   font-weight: bold;
